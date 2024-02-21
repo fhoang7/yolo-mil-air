@@ -1,0 +1,10 @@
+name: yolo-mil
+dependencies:
+- python=3.9
+- jupyter
+- ipykernel
+- pip
+- pandas
+- pytorch
+- pip:
+  - ultralytics
