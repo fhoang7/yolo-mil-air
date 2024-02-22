@@ -1,6 +1,6 @@
 #%%
 data_yaml = '''
-path: jets  # dataset root dir
+path: ../yolo-jets  # dataset root dir
 train: train_split.txt  # relative to path
 val: val_split.txt  # relative to path
 
