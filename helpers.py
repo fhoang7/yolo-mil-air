@@ -1,4 +1,5 @@
 import pandas as pd
+import shutil
 #%% Convert CSVs into proper bounding box formats
 def convert_bboxes_to_yolo(df: pd.DataFrame, class2idx: dict):
     """
@@ -16,4 +17,13 @@ def convert_bboxes_to_yolo(df: pd.DataFrame, class2idx: dict):
     sample['height_norm'] = sample['ymax_norm'] - sample['ymin_norm']
     sample = sample[['class_id', 'xcenter', 'ycenter', 'width_norm', 'height_norm']]
 
-    return df
+    return sample
+
+def write_df_to_txt(df: pd.DataFrame, txt_output_path, file_id: str):
+    file_id_name = f'{file_id}.txt'
+    text_file = txt_output_path / file_id_name
+    if not text_file.exists():
+        with text_file.open("w", encoding = "utf-8") as f:
+            f.write(df.to_string(header = False, index = False))
+    else:
+        print(f'File {file_id_name} already exists.')
