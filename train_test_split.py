@@ -1,12 +1,13 @@
 #%%
-import matplotlib
-import seaborn as sns
+# Purpose: Visualize bboxes and create train + test split
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
 from matplotlib.patches import Rectangle
 import os
 from pathlib import Path
+from collections import Counter
 #%%
 data_dir = "C:/Users/frank/OneDrive/Documents/Data Projects/fighter-jets-photos/crop"
 yolo_dir = "C:/Users/frank/OneDrive/Documents/Data Projects/yolo-mil-air/datasets/"
@@ -53,5 +54,15 @@ for i, sample_id in enumerate(sample_ids):
         )
 
     ax[i].imshow(image)
-    ax[i].axis('off');
+    ax[i].axis('off')
+# %% Train Test Split Creation
+train_image_paths, val_image_paths = train_test_split(image_paths, train_size= 0.8, random_state= 42, shuffle=True)
+val_image_paths, test_image_paths = train_test_split(val_image_paths, train_size = 0.5, random_state = 42, shuffle = True)
+with open(f"{yolo_dir}/train_split.txt", 'w') as f:
+    f.writelines(f'./{img}\n' for img in train_image_paths)
+with open(f'{yolo_dir}/val_split.txt', 'w') as f:
+    f.writelines(f'./{img}\n' for img in val_image_paths)
+with open(f'{yolo_dir}/test_split.txt', 'w') as f:
+    f.writelines(f'./{img}\n' for img in test_image_paths)
+
 # %%

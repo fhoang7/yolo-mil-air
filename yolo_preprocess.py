@@ -38,5 +38,3 @@ for csv in tqdm(bbox_csvs):
 os.chdir('C:/Users/frank/OneDrive/Documents/Data Projects/fighter-jets-photos/dataset')
 for pic in tqdm(images):
     shutil.copy(pic, images_directory)
-
-#%% Create train test split

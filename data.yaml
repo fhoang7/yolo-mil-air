@@ -2,6 +2,7 @@
 path: datasets/  # dataset root dir
 train: train_split.txt  # relative to path
 val: val_split.txt  # relative to path
+test: test_split.txt # relative to path
 
 # Classes
 names:
