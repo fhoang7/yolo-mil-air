@@ -5,6 +5,7 @@ from pathlib import Path
 import helpers
 import shutil
 from tqdm import tqdm
+from sklearn.model_selection import train_test_split
 #%% Set source directory for original images/labels
 os.chdir('C:/Users/frank/OneDrive/Documents/Data Projects/yolo-mil-air/')
 #%% Initialize directories
