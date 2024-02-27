@@ -24,6 +24,7 @@ if not images_directory.exists():
 #%% Define class id to object map
 crop_files = sorted(os.listdir('../fighter-jets-photos/crop'))
 class2idx = {class_name: i for i, class_name in enumerate(crop_files)}
+idx2class = {i: class_name for i, class_name in enumerate(crop_files)}
 #%% Figure out csvs and images
 dataset_files = os.listdir('../fighter-jets-photos/dataset')
 bbox_csvs = [f for f in dataset_files if f.endswith('.csv')]
@@ -38,3 +39,4 @@ for csv in tqdm(bbox_csvs):
 os.chdir('C:/Users/frank/OneDrive/Documents/Data Projects/fighter-jets-photos/dataset')
 for pic in tqdm(images):
     shutil.copy(pic, images_directory)
+# %%

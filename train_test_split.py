@@ -59,10 +59,10 @@ for i, sample_id in enumerate(sample_ids):
 train_image_paths, val_image_paths = train_test_split(image_paths, train_size= 0.8, random_state= 42, shuffle=True)
 val_image_paths, test_image_paths = train_test_split(val_image_paths, train_size = 0.5, random_state = 42, shuffle = True)
 with open(f"{yolo_dir}/train_split.txt", 'w') as f:
-    f.writelines(f'./{img}\n' for img in train_image_paths)
+    f.writelines(f'./images/{img}\n' for img in train_image_paths)
 with open(f'{yolo_dir}/val_split.txt', 'w') as f:
-    f.writelines(f'./{img}\n' for img in val_image_paths)
+    f.writelines(f'./images/{img}\n' for img in val_image_paths)
 with open(f'{yolo_dir}/test_split.txt', 'w') as f:
-    f.writelines(f'./{img}\n' for img in test_image_paths)
+    f.writelines(f'./images/{img}\n' for img in test_image_paths)
 
 # %%
