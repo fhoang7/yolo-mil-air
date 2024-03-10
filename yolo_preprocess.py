@@ -7,7 +7,7 @@ import shutil
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
 #%% Set source directory for original images/labels
-os.chdir('C:/Users/frank/OneDrive/Documents/Data Projects/yolo-mil-air/')
+os.chdir('C:/Users/frank/Documents/GitHub/yolo-mil-air/')
 #%% Initialize directories
 data_directory = Path(Path.cwd() / "datasets")
 if not data_directory.exists():
@@ -36,7 +36,7 @@ for csv in tqdm(bbox_csvs):
     file_id = csv.split('.')[0]
     helpers.write_df_to_txt(yolo_df, labels_directory, file_id)
 #%% Write images to correct file structure
-os.chdir('C:/Users/frank/OneDrive/Documents/Data Projects/fighter-jets-photos/dataset')
+os.chdir('C:/Users/frank/Documents/GitHub/fighter-jets-photos/dataset')
 for pic in tqdm(images):
     shutil.copy(pic, images_directory)
 # %%

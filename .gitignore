@@ -161,3 +161,6 @@ cython_debug/
 
 # Photos
 datasets/
+
+# YOLO Runs
+runs/

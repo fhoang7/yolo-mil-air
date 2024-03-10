@@ -9,16 +9,16 @@ import os
 from pathlib import Path
 from collections import Counter
 #%%
-data_dir = "C:/Users/frank/OneDrive/Documents/Data Projects/fighter-jets-photos/crop"
-yolo_dir = "C:/Users/frank/OneDrive/Documents/Data Projects/yolo-mil-air/datasets/"
+data_dir = "C:/Users/frank/Documents/GitHub/fighter-jets-photos/crop"
+yolo_dir = "C:/Users/frank/Documents/GitHub/yolo-mil-air/datasets/"
 os.chdir(yolo_dir)
 class_names = sorted(os.listdir(data_dir))
-image_dir = "C:/Users/frank/OneDrive/Documents/Data Projects/yolo-mil-air/datasets/images"
-label_dir = "C:/Users/frank/OneDrive/Documents/Data Projects/yolo-mil-air/datasets/labels"
-image_paths = os.listdir("C:/Users/frank/OneDrive/Documents/Data Projects/yolo-mil-air/datasets/images")
-label_paths = os.listdir("C:/Users/frank/OneDrive/Documents/Data Projects/yolo-mil-air/datasets/labels")
+image_dir = "C:/Users/frank/Documents/GitHub/yolo-mil-air/datasets/images"
+label_dir = "C:/Users/frank/Documents/GitHub/yolo-mil-air/datasets/labels"
+image_paths = os.listdir("C:/Users/frank/Documents/GitHub/yolo-mil-air/datasets/images")
+label_paths = os.listdir("C:/Users/frank/Documents/GitHub/yolo-mil-air/datasets/labels")
 #%% Index 2 class mappings
-img_directory = "C:/Users/frank/OneDrive/Documents/Data Projects/yolo-mil-air/datasets/images"
+img_directory = "C:/Users/frank/Documents/GitHub/yolo-mil-air/datasets/images"
 sample_ids = np.random.randint(0, len(image_paths), 4)
 index2class = {class_index: class_name for class_index, class_name in enumerate(class_names)}
 cmap = plt.get_cmap('rainbow', len(index2class))
