@@ -164,3 +164,6 @@ datasets/
 
 # YOLO Runs
 runs/
+
+# Ignore YOLO models
+*.pt
