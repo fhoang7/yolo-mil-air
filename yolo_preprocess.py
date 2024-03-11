@@ -5,7 +5,6 @@ from pathlib import Path
 import helpers
 import shutil
 from tqdm import tqdm
-from sklearn.model_selection import train_test_split
 #%% Set source directory for original images/labels
 os.chdir('C:/Users/frank/Documents/GitHub/yolo-mil-air/')
 #%% Initialize directories
@@ -39,4 +38,5 @@ for csv in tqdm(bbox_csvs):
 os.chdir('C:/Users/frank/Documents/GitHub/fighter-jets-photos/dataset')
 for pic in tqdm(images):
     shutil.copy(pic, images_directory)
+
 # %%

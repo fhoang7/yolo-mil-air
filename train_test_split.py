@@ -19,11 +19,11 @@ image_paths = os.listdir("C:/Users/frank/Documents/GitHub/yolo-mil-air/datasets/
 label_paths = os.listdir("C:/Users/frank/Documents/GitHub/yolo-mil-air/datasets/labels")
 #%% Index 2 class mappings
 img_directory = "C:/Users/frank/Documents/GitHub/yolo-mil-air/datasets/images"
-sample_ids = np.random.randint(0, len(image_paths), 4)
+sample_ids = np.random.randint(0, len(image_paths), 10)
 index2class = {class_index: class_name for class_index, class_name in enumerate(class_names)}
 cmap = plt.get_cmap('rainbow', len(index2class))
 # %%
-fig, ax = plt.subplots(nrows=4, ncols=1, figsize=(12, 4 * 7))
+fig, ax = plt.subplots(nrows=10, ncols=1, figsize=(12, 4 * 7))
 
 for i, sample_id in enumerate(sample_ids):
     # load image and bboxes
@@ -45,6 +45,7 @@ for i, sample_id in enumerate(sample_ids):
             facecolor='none',
             alpha=0.5
         )
+        print(rect)
         ax[i].add_patch(rect)
         ax[i].text(
             xmin, ymin, 
@@ -56,13 +57,43 @@ for i, sample_id in enumerate(sample_ids):
     ax[i].imshow(image)
     ax[i].axis('off')
 # %% Train Test Split Creation
-train_image_paths, val_image_paths = train_test_split(image_paths, train_size= 0.8, random_state= 42, shuffle=True)
+train_image_paths, val_image_paths = train_test_split(image_paths, train_size= 0.7, random_state= 42, shuffle=True)
 val_image_paths, test_image_paths = train_test_split(val_image_paths, train_size = 0.5, random_state = 42, shuffle = True)
 with open(f"{yolo_dir}/train_split.txt", 'w') as f:
     f.writelines(f'./images/{img}\n' for img in train_image_paths)
 with open(f'{yolo_dir}/val_split.txt', 'w') as f:
     f.writelines(f'./images/{img}\n' for img in val_image_paths)
 with open(f'{yolo_dir}/test_split.txt', 'w') as f:
-    f.writelines(f'./images/{img}\n' for img in test_image_paths)
+    f.writelines(f'./{img}\n' for img in test_image_paths)
 
+# %%
+# %%
+class_counter = {'train': Counter(), 'val': Counter()}
+class_freqs = {}
+
+with open('train_split.txt', 'r') as f:
+    for line in f:
+        image_id = line.split('/')[-1].split('.')[0]
+        df = np.loadtxt(f'{label_dir}/{image_id}.txt',ndmin=2)
+        class_counter['train'].update(df[:, 0].astype(int))
+# get class freqs
+total = sum(class_counter['train'].values())
+class_freqs['train'] = {k: v / total for k, v in class_counter['train'].items()}
+        
+with open('val_split.txt', 'r') as f:
+    for line in f:
+        image_id = line.split('/')[-1].split('.')[0]
+        df = np.loadtxt(f'{label_dir}/{image_id}.txt',ndmin=2)
+        class_counter['val'].update(df[:, 0].astype(int))
+# get class freqs
+total = sum(class_counter['val'].values())
+class_freqs['val'] = {k: v / total for k, v in class_counter['val'].items()}
+# %%
+fig, ax = plt.subplots(figsize=(9, 6))
+
+ax.plot(range(40), [class_freqs['train'][i] for i in range(40)], color='navy', label='train');
+ax.plot(range(40), [class_freqs['val'][i] for i in range(40)], color='tomato', label='val');
+ax.legend();
+ax.set_xlabel('Class ID');
+ax.set_ylabel('Class Frequency');
 # %%
