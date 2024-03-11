@@ -11,7 +11,5 @@ model = YOLO("yolov8m.pt")
 model.to('cuda')
 #%%
 results = model.train(data = 'data.yaml', epochs = 50, batch = -1)
-#model.tune(data='data.yaml', epochs=30, iterations=300, optimizer='SGD', plots=False, save=False, val=False)
 # %%
 metrics = model.val(data='data.yaml')
-# %%
