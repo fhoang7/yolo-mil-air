@@ -1,6 +1,8 @@
 # yolo-mil-air
 Training a YOLOv8 medium model to detect and classify military aircraft photos. 
 
+Hardware: Nvidia RTX 4070 Super
+
 # Dataset
 We provide 45 total different fighter jets to YOLO for object detection. The model is trained on over 9000 images using mosaic augmentation and basic image processing techniques and is validated using about 1800 images. 
 
